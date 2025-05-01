@@ -29,6 +29,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
  */
 
+#include <stdlib.h>
 #define _GNU_SOURCE
 
 #include "common-logging.h"
@@ -46,7 +47,7 @@ static int set_profile_state(const char *value)
 	FILE *f = fopen(profile_path, "w");
 	if (!f) {
 		LOG_ERROR("Failed to open file for write %s\n", profile_path);
-		retval = EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 
 	if (fprintf(f, "%s\n", value) < 0) {
